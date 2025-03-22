@@ -1,0 +1,41 @@
+services:
+  db_soccer:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_DATABASE: db_soccer
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    ports:
+        - "3306:3306"
+    container_name: db_soccer
+    volumes:
+      - mariadb_data:/var/lib/mysql  
+  
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    container_name: api-gateway
+
+  discovery-service:
+    build: ./discovery-service
+    ports:
+      - "8761:8761"
+    container_name: discovery-service
+
+  soccer-microservice:
+    build: ./soccer
+    container_name: soccer-microservice
+    environment:
+      - DB_URL=${MARIADB_URL}
+      - DB_USER=${MARIADB_USER}
+      - DB_PASS=${MARIADB_PASSWORD}
+    depends_on:
+      - db_soccer
+      - discovery-service
+      - api-gateway
+
+volumes:
+  mariadb_data:

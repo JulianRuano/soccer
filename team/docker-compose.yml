@@ -1,0 +1,18 @@
+services:
+  db_soccer:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_URL: ${MARIADB_URL}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_DATABASE: db_soccer
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    ports:
+        - "3306:3306"
+    container_name: db_soccer
+    volumes:
+      -  mariadb_data:/var/lib/mysql 
+
+volumes:
+  db_soccer:
