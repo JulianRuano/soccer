@@ -1,11 +1,11 @@
 package com.team.infrastructure.adapters.input.rest.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.application.ports.input.ITeamInputPort;
@@ -46,8 +46,8 @@ public class TeamRestController {
             .of();
     }
 
-    @PutMapping("/player/{teamId}")
-    public ResponseEntity<ResponseDto<PlayerDtoResponse>> addPlayerToTeam(@PathVariable Long teamId, @RequestBody Long playerId) {
+    @PutMapping("/player")
+    public ResponseEntity<ResponseDto<PlayerDtoResponse>> addPlayerToTeam(@RequestParam Long teamId, @RequestParam Long playerId) {
         Player player = teamManagerInputPort.addPlayerToTeam(teamId, playerId);
         PlayerDtoResponse playerDtoResponses = playerRestMapper.toDtoResponse(player);
 

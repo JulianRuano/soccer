@@ -33,10 +33,4 @@ public class TeamEntity {
     @OneToMany(mappedBy = "team")
     private List<PlayerEntity> players;  
 
-    @OneToMany(mappedBy = "localTeam")
-    private List<GameEntity> localGames;
-
-    @OneToMany(mappedBy = "visitorTeam")
-    private List<GameEntity> visitorGames;
-
 }
