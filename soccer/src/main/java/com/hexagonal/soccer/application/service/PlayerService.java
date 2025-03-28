@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import com.hexagonal.soccer.application.ports.input.IPlayerInputPort;
-import com.hexagonal.soccer.application.ports.output.IPlayerOutputPort;
 import com.hexagonal.soccer.domain.model.Player;
+import com.hexagonal.soccer.domain.port.IPlayerRepositoryPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PlayerService implements IPlayerInputPort {
 
-    private final IPlayerOutputPort playerOutputPort;
+    private final IPlayerRepositoryPort playerOutputPort;
 
     @Override
     public Player createPlayer(Player player) {

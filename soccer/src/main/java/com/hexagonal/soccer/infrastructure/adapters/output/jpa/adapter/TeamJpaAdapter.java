@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.hexagonal.soccer.application.ports.output.ITeamOutputPort;
 import com.hexagonal.soccer.domain.model.Team;
+import com.hexagonal.soccer.domain.port.ITeamRepositoryPort;
 import com.hexagonal.soccer.infrastructure.adapters.output.jpa.entity.TeamEntity;
 import com.hexagonal.soccer.infrastructure.adapters.output.jpa.mapper.TeamEntityMapper;
 import com.hexagonal.soccer.infrastructure.adapters.output.jpa.repository.ITeamRepository;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class TeamJpaAdapter implements ITeamOutputPort {
+public class TeamJpaAdapter implements ITeamRepositoryPort {
 
     private final ITeamRepository teamRepository;
 

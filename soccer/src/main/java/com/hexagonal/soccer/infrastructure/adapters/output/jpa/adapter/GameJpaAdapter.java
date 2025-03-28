@@ -2,8 +2,8 @@ package com.hexagonal.soccer.infrastructure.adapters.output.jpa.adapter;
 
 import org.springframework.stereotype.Service;
 
-import com.hexagonal.soccer.application.ports.output.IGameOutputPort;
 import com.hexagonal.soccer.domain.model.Game;
+import com.hexagonal.soccer.domain.port.IGameRepositoryPort;
 import com.hexagonal.soccer.infrastructure.adapters.output.jpa.mapper.GameEntityMapper;
 import com.hexagonal.soccer.infrastructure.adapters.output.jpa.repository.IGameRepository;
 
@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class GameJpaAdapter implements IGameOutputPort {
+public class GameJpaAdapter implements IGameRepositoryPort {
 
     private final IGameRepository gameRepository;
 

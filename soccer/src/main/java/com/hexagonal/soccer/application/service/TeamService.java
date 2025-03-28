@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.hexagonal.soccer.application.ports.input.ITeamInputPort;
-import com.hexagonal.soccer.application.ports.output.IPlayerOutputPort;
-import com.hexagonal.soccer.application.ports.output.ITeamOutputPort;
 import com.hexagonal.soccer.domain.model.Player;
 import com.hexagonal.soccer.domain.model.Team;
+import com.hexagonal.soccer.domain.port.IPlayerRepositoryPort;
+import com.hexagonal.soccer.domain.port.ITeamRepositoryPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TeamService implements ITeamInputPort {
     
-    private final IPlayerOutputPort playerOutputPort;
-    private final ITeamOutputPort teamOutputPort;
+    private final IPlayerRepositoryPort playerOutputPort;
+    private final ITeamRepositoryPort teamOutputPort;
 
     @Override
     public Team createTeam(Team team, List<Long> idPlayers) {

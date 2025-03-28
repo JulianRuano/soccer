@@ -1,8 +1,8 @@
-package com.hexagonal.soccer.application.ports.output;
+package com.hexagonal.soccer.domain.port;
 
 import com.hexagonal.soccer.domain.model.Player;
 
-public interface ITeamManagerOutputPort {
+public interface ITeamManagerPort {
     Player addPlayerToTeam(Player player, Long teamId);
     Player removePlayerFromTeam(Player player, Long teamId);
 }
