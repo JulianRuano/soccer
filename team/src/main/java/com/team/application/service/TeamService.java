@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.team.application.ports.input.ITeamInputPort;
-import com.team.application.ports.output.IPlayerOutputPort;
+import com.team.application.ports.output.IFormatterResultOutputPort;
 import com.team.application.ports.output.ITeamOutputPort;
 import com.team.domain.model.Player;
 import com.team.domain.model.Team;
@@ -18,22 +18,29 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TeamService implements ITeamInputPort {
     
-    private final IPlayerOutputPort playerOutputPort;
     private final ITeamOutputPort teamOutputPort;
+    private final IFormatterResultOutputPort formatterResultOutputPort;
+
 
     @Override
     public Team createTeam(Team team, List<Long> idPlayers) {
-        // buscar jugadores por id
-        List<Player> players = new ArrayList<>();
-        idPlayers.forEach(id -> {
-            Optional<Player> player = playerOutputPort.getPlayerById(id);
-            if (player.isPresent()) {
-                players.add(player.get());
-            }
-        });
-        team.setPlayers(players);
 
-        return teamOutputPort.createTeam(team);
+        if (!teamOutputPort.existsById(team.getId())) {
+            formatterResultOutputPort.returnResponseError(404, "Team not found");
+        }
+
+        List<Long> findExistingPlayerIds = teamOutputPort.findExistingPlayerIds(idPlayers);
+
+        if (idPlayers.size() != findExistingPlayerIds.size()) {
+            List<Long> missingPlayerIds = getMissingPlayerIds(idPlayers);
+            formatterResultOutputPort.returnResponseError(404, "Player not found: "+missingPlayerIds);
+        }
+
+        for (Long idPlayer : idPlayers) {
+            team.addPlayer(new Player(idPlayer));
+        }
+        
+        return teamOutputPort.createTeam(team, idPlayers);
     }
 
     @Override
@@ -49,6 +56,14 @@ public class TeamService implements ITeamInputPort {
             return team;
         }
         return Optional.empty();
+    }
+
+
+    public List<Long> getMissingPlayerIds(List<Long> idPlayers) {
+        List<Long> existingPlayerIds = teamOutputPort.findExistingPlayerIds(idPlayers);
+        List<Long> missingPlayerIds = new ArrayList<>(idPlayers);
+        missingPlayerIds.removeAll(existingPlayerIds);
+        return missingPlayerIds;
     }
 
 }

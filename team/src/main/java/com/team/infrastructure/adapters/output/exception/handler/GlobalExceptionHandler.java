@@ -17,6 +17,8 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.team.infrastructure.adapters.output.exception.dto.ErrorResponseDto;
 
+import jakarta.persistence.EntityNotFoundException;
+
 /**
  * Global Exception Handler to manage various exception types.
  * @author JulianRuano
@@ -133,5 +135,23 @@ public class GlobalExceptionHandler {
         .build()
         .of();
   }
+
+  /**
+   * Handles `EntityNotFoundException` by returning a response with a 404 NOT FOUND status.
+   *
+   * @param ex the exception thrown when an entity is not found.
+   * @return a response with the error details.
+   */
+  @ExceptionHandler(EntityNotFoundException.class)
+  @ResponseBody
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public ResponseEntity<ErrorResponseDto<Object>> handleEntityNotFoundException(EntityNotFoundException ex) {
+    return ErrorResponseDto.builder()
+        .errorCode(HttpStatus.NOT_FOUND.value())
+        .message(ex.getMessage())
+        .build()
+        .of();
+  }
+
 
 }

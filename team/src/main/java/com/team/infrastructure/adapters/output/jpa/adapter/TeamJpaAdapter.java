@@ -1,5 +1,6 @@
 package com.team.infrastructure.adapters.output.jpa.adapter;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
@@ -21,9 +22,8 @@ public class TeamJpaAdapter implements ITeamOutputPort {
     private final TeamEntityMapper teamEntityMapper;
 
     @Override
-    public Team createTeam(Team team) {
+    public Team createTeam(Team team, List<Long> idPlayers) {
         TeamEntity teamEntity = teamEntityMapper.toEntity(team);
-        
         Team savedTeam = teamEntityMapper.toDomain(teamRepository.save(teamEntity));
         return savedTeam;
     }
@@ -38,6 +38,15 @@ public class TeamJpaAdapter implements ITeamOutputPort {
         Optional<TeamEntity> teamEntity = teamRepository.findById(id);
         return teamEntity.map(teamEntityMapper::toDomain);
     }
+    @Override
+    public boolean existsById(Long id) {
+        return teamRepository.existsById(id);
+    }
+    @Override
+    public  List<Long> findExistingPlayerIds(List<Long> idPlayers) {
+        return teamRepository.findExistingPlayerIds(idPlayers);
+    }
+
 
 
     
