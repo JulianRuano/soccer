@@ -3,7 +3,6 @@ package com.hexagonal.soccer.domain.domainServices;
 import org.springframework.stereotype.Service;
 
 import com.hexagonal.soccer.domain.model.Game;
-import com.hexagonal.soccer.domain.model.Player;
 import com.hexagonal.soccer.domain.model.Team;
 
 @Service
@@ -23,7 +22,9 @@ public class GameSimulator {
     }
 
     private int calculatePowerTeam(Team team){
-        return team.getPlayers().stream().mapToInt(Player::getSkill).sum();
+        int power = (int) (Math.random() * 101); 
+        return power;
+        
     }
 
     private int calculateGoals(int power){

@@ -1,4 +1,4 @@
-package com.team.infrastructure.config;
+package com.hexagonal.soccer.infrastructure.config;
 
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -11,7 +11,7 @@ import org.springframework.amqp.core.BindingBuilder;
 @Configuration
 public class RabbitConfig {
     public static final String PLAYER_EXCHANGE = "player.exchange";
-    public static final String PLAYER_TEAM_QUEUE = "player.team.queue";
+    public static final String PLAYER_SOCCER_QUEUE = "player.soccer.queue";
 
     @Bean
     Jackson2JsonMessageConverter jsonMessageConverter() {
@@ -19,8 +19,8 @@ public class RabbitConfig {
     }
 
     @Bean
-    Queue teamPlayerQueue() {
-        return new Queue(PLAYER_TEAM_QUEUE, true);
+    Queue soccerPlayerQueue() {
+        return new Queue(PLAYER_SOCCER_QUEUE, true);
     }
 
     @Bean
@@ -29,7 +29,7 @@ public class RabbitConfig {
     }
 
     @Bean
-    Binding teamPlayerQueueBinding() {
-        return BindingBuilder.bind(teamPlayerQueue()).to(playerExchange());
+    Binding soccerPlayerQueueBinding() {
+        return BindingBuilder.bind(soccerPlayerQueue()).to(playerExchange());
     }
 }

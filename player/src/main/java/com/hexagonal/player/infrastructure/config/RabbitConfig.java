@@ -14,13 +14,14 @@ import org.springframework.amqp.core.BindingBuilder;
 public class RabbitConfig {
     public static final String PLAYER_EXCHANGE = "player.exchange";
     public static final String PLAYER_TEAM_QUEUE = "player.team.queue";
+    public static final String PLAYER_SOCCER_QUEUE = "player.soccer.queue";
 
     @Bean
     RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
-    }  
+    }
 
     @Bean
     Jackson2JsonMessageConverter jsonMessageConverter() {
@@ -29,18 +30,27 @@ public class RabbitConfig {
 
     @Bean
     FanoutExchange playerExchange() {
-        return new FanoutExchange(PLAYER_EXCHANGE);
+        return new FanoutExchange(PLAYER_EXCHANGE, true, false);
     }
 
-    // Team Microservices
+    // Opcional: si quieres que player cree las colas también
     @Bean
     Queue teamPlayerQueue() {
-        return new Queue(PLAYER_TEAM_QUEUE);
+        return new Queue(PLAYER_TEAM_QUEUE, true);
     }
 
     @Bean
-    Binding teamPlayerQueueBinding(Queue teamPlayerQueue, FanoutExchange playerExchange) {
-        return BindingBuilder.bind(teamPlayerQueue).to(playerExchange);
+    Queue soccerPlayerQueue() {
+        return new Queue(PLAYER_SOCCER_QUEUE, true);
     }
 
+    @Bean
+    Binding teamPlayerQueueBinding() {
+        return BindingBuilder.bind(teamPlayerQueue()).to(playerExchange());
+    }
+
+    @Bean
+    Binding soccerPlayerQueueBinding() {
+        return BindingBuilder.bind(soccerPlayerQueue()).to(playerExchange());
+    }
 }

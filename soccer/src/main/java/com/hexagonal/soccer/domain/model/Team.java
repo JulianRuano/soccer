@@ -13,14 +13,6 @@ public class Team {
     private List<Player> players;    
     private Alignment alignment;
 
-    public void trainingTeam() {
-        players.forEach(Player::training);
-    }
-
-    public boolean isReadyForGame() {
-        return players.stream().allMatch(Player::canPlay);
-    }
-
     public void addPlayer(Player player) {
         players.add(player);
     }

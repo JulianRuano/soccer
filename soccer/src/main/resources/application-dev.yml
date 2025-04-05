@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${MARIADB_URL}
-    username: ${MARIADB_USER}
-    password: ${MARIADB_PASSWORD}
+    url: ${MARIADB_URL_SOCCER}
+    username: ${MARIADB_USER_SOCCER}
+    password: ${MARIADB_PASSWORD_SOCCER}
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
@@ -17,6 +17,12 @@ spring:
   
   application:
     name: soccer-microservice
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 server:
   port: 0

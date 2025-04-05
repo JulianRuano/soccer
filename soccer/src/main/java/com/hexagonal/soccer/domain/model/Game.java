@@ -22,9 +22,6 @@ public class Game {
     }
 
     public void playGame(Integer local, Integer visitor){
-        if (!localTeam.isReadyForGame() || !visitorTeam.isReadyForGame()){
-            throw new RuntimeException("Teams are not ready for the game");
-        }
         localGoals = local;
         visitorGoals = visitor;
         finished = true;

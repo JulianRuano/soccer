@@ -1,7 +1,4 @@
 spring:
   profiles:
     active:
-    - h2
-
-  application:
-    name: team-microservice
+    - ${profile}

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${MARIADB_URL}
-    username: ${MARIADB_USER}
-    password: ${MARIADB_PASSWORD}
+    url: ${MARIADB_URL_TEAM}
+    username: ${MARIADB_USER_TEAM}
+    password: ${MARIADB_PASSWORD_TEAM}
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
@@ -20,6 +20,9 @@ spring:
     port: 5672
     username: guest
     password: guest
+
+  application:
+    name: team-microservice
     
 server:
   port: 0
