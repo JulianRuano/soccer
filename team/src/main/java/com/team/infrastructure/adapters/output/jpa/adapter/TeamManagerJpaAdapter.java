@@ -1,8 +1,9 @@
 package com.team.infrastructure.adapters.output.jpa.adapter;
 
 import org.springframework.stereotype.Service;
-import com.team.application.ports.output.ITeamManagerOutputPort;
+
 import com.team.domain.model.Player;
+import com.team.domain.port.ITeamManagerOutputPort;
 import com.team.infrastructure.adapters.output.jpa.entity.PlayerEntity;
 import com.team.infrastructure.adapters.output.jpa.entity.TeamEntity;
 import com.team.infrastructure.adapters.output.jpa.mapper.PlayerEntityMapper;

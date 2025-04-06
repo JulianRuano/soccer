@@ -1,8 +1,9 @@
-package com.hexagonal.soccer.application.ports.input;
+package com.team.application.port;
 
 import java.util.List;
 import java.util.Optional;
-import com.hexagonal.soccer.domain.model.Team;
+
+import com.team.domain.model.Team;
 
 public interface ITeamInputPort {
     Team createTeam(Team team, List<Long> idPlayers);

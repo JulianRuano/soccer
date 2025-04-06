@@ -4,13 +4,13 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.team.application.ports.input.ITeamManagerInputPort;
-import com.team.application.ports.output.IFormatterResultOutputPort;
-import com.team.application.ports.output.IPlayerOutputPort;
-import com.team.application.ports.output.ITeamManagerOutputPort;
-import com.team.application.ports.output.ITeamOutputPort;
+import com.team.application.port.ITeamManagerInputPort;
 import com.team.domain.model.Player;
 import com.team.domain.model.Team;
+import com.team.domain.port.IFormatterResultOutputPort;
+import com.team.domain.port.IPlayerRepositoryPort;
+import com.team.domain.port.ITeamManagerOutputPort;
+import com.team.domain.port.ITeamRepositoryPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TeamManagerService implements ITeamManagerInputPort{
 
-    private final IPlayerOutputPort playerOutputPort;
-    private final ITeamOutputPort teamOutputPort;
+    private final IPlayerRepositoryPort playerOutputPort;
+    private final ITeamRepositoryPort teamOutputPort;
     private final ITeamManagerOutputPort teamManagerOutputPort;
     private final IFormatterResultOutputPort formatterResultOutputPort;
 

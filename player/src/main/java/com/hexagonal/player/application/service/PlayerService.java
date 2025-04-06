@@ -3,10 +3,11 @@ package com.hexagonal.player.application.service;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import com.hexagonal.player.application.ports.input.IPlayerInputPort;
-import com.hexagonal.player.application.ports.output.IPlayerEventPublisherPort;
-import com.hexagonal.player.application.ports.output.IPlayerRepositoryPort;
+
+import com.hexagonal.player.application.port.IPlayerInputPort;
 import com.hexagonal.player.domain.model.Player;
+import com.hexagonal.player.domain.port.IPlayerEventPublisherPort;
+import com.hexagonal.player.domain.port.IPlayerRepositoryPort;
 
 import lombok.RequiredArgsConstructor;
 

@@ -2,8 +2,8 @@ package com.team.infrastructure.adapters.output.messageBroker;
 
 import org.springframework.stereotype.Service;
 
-import com.team.application.ports.output.IPlayerOutputPort;
 import com.team.domain.model.Player;
+import com.team.domain.port.IPlayerRepositoryPort;
 import com.team.infrastructure.adapters.output.messageBroker.dto.EventDto;
 import com.team.infrastructure.adapters.output.messageBroker.dto.PlayerDto;
 import com.team.infrastructure.adapters.output.messageBroker.mapper.PlayerEventMapper;
@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PlayerListener {
 
-    private final IPlayerOutputPort playerOutputPort;
+    private final IPlayerRepositoryPort playerOutputPort;
 
     private final PlayerEventMapper playerEventMapper;
 

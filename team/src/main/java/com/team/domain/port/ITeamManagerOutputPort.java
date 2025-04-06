@@ -1,4 +1,4 @@
-package com.team.application.ports.output;
+package com.team.domain.port;
 
 import com.team.domain.model.Player;
 

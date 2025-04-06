@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.team.application.ports.input.ITeamInputPort;
-import com.team.application.ports.input.ITeamManagerInputPort;
+import com.team.application.port.ITeamInputPort;
+import com.team.application.port.ITeamManagerInputPort;
 import com.team.domain.model.Player;
 import com.team.domain.model.Team;
 import com.team.infrastructure.adapters.input.rest.dto.ResponseDto;

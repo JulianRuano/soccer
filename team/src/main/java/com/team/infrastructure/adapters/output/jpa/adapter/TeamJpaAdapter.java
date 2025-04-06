@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.team.application.ports.output.ITeamOutputPort;
 import com.team.domain.model.Team;
+import com.team.domain.port.ITeamRepositoryPort;
 import com.team.infrastructure.adapters.output.jpa.entity.TeamEntity;
 import com.team.infrastructure.adapters.output.jpa.mapper.TeamEntityMapper;
 import com.team.infrastructure.adapters.output.jpa.repository.ITeamRepository;
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class TeamJpaAdapter implements ITeamOutputPort {
+public class TeamJpaAdapter implements ITeamRepositoryPort {
 
     private final ITeamRepository teamRepository;
 

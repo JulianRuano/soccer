@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hexagonal.player.application.ports.input.IPlayerInputPort;
+import com.hexagonal.player.application.port.IPlayerInputPort;
 import com.hexagonal.player.domain.model.Player;
 import com.hexagonal.player.infrastructure.adapters.input.rest.dto.ResponseDto;
 import com.hexagonal.player.infrastructure.adapters.input.rest.dto.request.PlayerDtoRequest;

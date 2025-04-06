@@ -1,8 +1,8 @@
-package com.hexagonal.player.application.ports.output;
+package com.team.domain.port;
 
 import java.util.Optional;
 
-import com.hexagonal.player.domain.model.Player;
+import com.team.domain.model.Player;
 
 
 public interface IPlayerRepositoryPort {

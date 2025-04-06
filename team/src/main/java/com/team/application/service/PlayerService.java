@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.team.application.ports.input.IPlayerInputPort;
-import com.team.application.ports.output.IPlayerOutputPort;
+import com.team.application.port.IPlayerInputPort;
 import com.team.domain.model.Player;
+import com.team.domain.port.IPlayerRepositoryPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PlayerService implements IPlayerInputPort {
 
-    private final IPlayerOutputPort playerOutputPort;
+    private final IPlayerRepositoryPort playerOutputPort;
 
     @Override
     public Player createPlayer(Player player) {

@@ -3,8 +3,8 @@ package com.hexagonal.player.infrastructure.adapters.output.messageBroker;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
-import com.hexagonal.player.application.ports.output.IPlayerEventPublisherPort;
 import com.hexagonal.player.domain.model.Player;
+import com.hexagonal.player.domain.port.IPlayerEventPublisherPort;
 import com.hexagonal.player.infrastructure.adapters.output.messageBroker.dto.EventDto;
 import com.hexagonal.player.infrastructure.adapters.output.messageBroker.dto.PlayerDto;
 import com.hexagonal.player.infrastructure.adapters.output.messageBroker.enums.EventType;

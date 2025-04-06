@@ -1,4 +1,4 @@
-package com.hexagonal.player.application.ports.input;
+package com.hexagonal.player.application.port;
 
 import com.hexagonal.player.domain.model.Player;
 

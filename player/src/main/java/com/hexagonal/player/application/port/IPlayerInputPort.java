@@ -1,4 +1,4 @@
-package com.hexagonal.player.application.ports.input;
+package com.hexagonal.player.application.port;
 
 import java.util.Optional;
 

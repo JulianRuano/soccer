@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.hexagonal.player.application.ports.output.IPlayerRepositoryPort;
 import com.hexagonal.player.domain.model.Player;
+import com.hexagonal.player.domain.port.IPlayerRepositoryPort;
 import com.hexagonal.player.infrastructure.adapters.output.jpa.entity.PlayerEntity;
 import com.hexagonal.player.infrastructure.adapters.output.jpa.mapper.PlayerEntityMapper;
 import com.hexagonal.player.infrastructure.adapters.output.jpa.repository.IPlayerRepository;
