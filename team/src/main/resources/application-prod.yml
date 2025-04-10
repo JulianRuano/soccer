@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: ${MARIADB_URL_TEAM}
+    username: ${MARIADB_USER_TEAM}
+    password: ${MARIADB_PASSWORD_TEAM}
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+
+
+      
