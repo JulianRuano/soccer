@@ -1,10 +1,14 @@
 package com.hexagonal.soccer.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Game {
     private Long id;
     private Team localTeam;

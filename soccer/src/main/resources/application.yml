@@ -3,5 +3,5 @@ spring:
     name: soccer-microservice
 
   profiles:
-    active: ${PROFILES:dev}
+    active: ${PROFILES:devlocal}
 

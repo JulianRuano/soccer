@@ -29,12 +29,13 @@ public class soccerRestController {
         player = playerInputPort.createPlayer(player);
 
         PlayerDtoResponse playerDtoResponse = playerRestMapper.toDtoResponse(player);
-        return ResponseDto.<PlayerDtoResponse>builder()
-            .data(playerDtoResponse)
-            .message("Player created successfully")
-            .status(201)
-            .build()
-            .of();   
+        ResponseDto<PlayerDtoResponse> response = ResponseDto.<PlayerDtoResponse>builder()
+        .data(playerDtoResponse)
+        .message("Player created successfully")
+        .status(201)
+        .build();
+
+        return response.of();
     }
 
 }

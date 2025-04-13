@@ -13,6 +13,7 @@ import com.hexagonal.player.infrastructure.config.RabbitConfig;
 
 import lombok.RequiredArgsConstructor;
 
+
 @Component
 @RequiredArgsConstructor
 public class PlayerEventPublisher implements IPlayerEventPublisherPort {

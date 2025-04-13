@@ -17,5 +17,4 @@ public class TeamDtoResponse {
     private Long id;
     private String name;
     private List<Player> players;    
-    private String alignment;
 }

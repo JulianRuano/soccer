@@ -30,6 +30,8 @@
 		<java.version>17</java.version>
 		<org.mapstruct.version>1.6.3</org.mapstruct.version>
 		<flyway.version>11.7.0</flyway.version>
+		<lombok.version>1.18.38</lombok.version>
+		<spring-boot.version>3.4.4</spring-boot.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,14 +59,16 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<!-- Eureka Client -->
 		<dependency>
@@ -77,6 +81,13 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
+		</dependency>
+		 <!-- Procesador de anotaciones de MapStruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${org.mapstruct.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<!-- RabbitMQ -->
 		<dependency>
@@ -98,7 +109,8 @@
 	</dependencies>
 
 	<build>
-		<plugins>		
+		<plugins>	
+			<!-- Flyway plugin for database migrations -->		
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -109,19 +121,9 @@
                     <password>${MARIADB_PASSWORD_TEAM}</password>
                     <locations>classpath:db/migration</locations>
                 </configuration>
-            </plugin>		
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
+            </plugin>	
+
+			<!-- Maven Compiler Plugin for configuring compilation and annotation processors -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -130,6 +132,13 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<annotationProcessorPaths>
+						<!-- Lombok processor -->
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+						<!-- MapStruct processor -->
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
@@ -137,7 +146,13 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
-        	</plugin>
+			</plugin>
+
+			<!-- Spring Boot Maven Plugin for building executable JARs -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 

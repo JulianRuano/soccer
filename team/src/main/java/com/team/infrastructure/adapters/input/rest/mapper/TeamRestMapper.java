@@ -10,15 +10,12 @@ import com.team.infrastructure.adapters.input.rest.dto.response.TeamDtoResponse;
 @Mapper(componentModel = "spring")
 public interface TeamRestMapper {
 
-    @Mapping(target = "alignment", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "players", ignore = true)
     Team toDomain(TeamDtoRequest teamDtoRequest);
 
-    @Mapping(target = "alignment", ignore = true)
     @Mapping(target = "idPlayers", ignore = true)
     TeamDtoRequest toDtoRequest(Team team);
 
-    @Mapping(target = "alignment", ignore = true)
     TeamDtoResponse toDtoResponse(Team team);
 }

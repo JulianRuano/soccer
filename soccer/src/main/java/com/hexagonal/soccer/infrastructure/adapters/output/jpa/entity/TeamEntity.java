@@ -3,7 +3,6 @@ package com.hexagonal.soccer.infrastructure.adapters.output.jpa.entity;
 import java.util.List;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,9 +25,6 @@ public class TeamEntity {
     private Long id;
 
     private String name;
-    
-    @Embedded
-    private AlignmentEntity alignment;
  
     @OneToMany(mappedBy = "team")
     private List<PlayerEntity> players;  

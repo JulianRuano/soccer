@@ -1,3 +1,3 @@
-INSERT INTO team (team_id, name, scheme) VALUES 
-  (1, 'Red Team', 'Offensive'), 
-  (2, 'Blue Team', 'Defensive');
+INSERT INTO team (team_id, name) VALUES 
+  (1, 'Red Team'),
+  (2, 'Blue Team');

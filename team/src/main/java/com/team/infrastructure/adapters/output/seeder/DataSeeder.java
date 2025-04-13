@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import com.team.infrastructure.adapters.output.jpa.entity.AlignmentEntity;
 import com.team.infrastructure.adapters.output.jpa.entity.TeamEntity;
 import com.team.infrastructure.adapters.output.jpa.repository.ITeamRepository;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @Component
-@Profile("dev")
+@Profile("devlocal")
 @RequiredArgsConstructor
 @Slf4j
 public class DataSeeder {
@@ -26,8 +25,8 @@ public class DataSeeder {
     public void seed() {
         try {
             if (teamRepository.count() == 0) {
-                TeamEntity red = new TeamEntity(null, "Red Team", new AlignmentEntity("Offensive"), new ArrayList<>());
-                TeamEntity blue = new TeamEntity(null, "Blue Team", new AlignmentEntity("Defensive"), new ArrayList<>());
+                TeamEntity red = new TeamEntity(null, "Red Team", new ArrayList<>());
+                TeamEntity blue = new TeamEntity(null, "Blue Team", new ArrayList<>());
 
                 teamRepository.saveAll(Arrays.asList(red, blue));
                 log.info("Datos de prueba insertados.");

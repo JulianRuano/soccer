@@ -15,4 +15,6 @@ public class Player {
         this.id = id;
     }
 
+    private Team team;
+
 }

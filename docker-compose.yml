@@ -3,15 +3,43 @@ services:
     image: mariadb:latest
     restart: always
     environment:
-      MARIADB_USER: ${MARIADB_USER}
-      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
       MARIADB_DATABASE: db_soccer
+      MARIADB_USER: ${MARIADB_URL_SOCCER
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD_SOCCER}
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
     ports:
-        - "3306:3306"
+      - "3306:3306"
     container_name: db_soccer
     volumes:
-      - mariadb_data:/var/lib/mysql  
+      - mariadb_soccer:/var/lib/mysql
+
+  db_team:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_DATABASE: db_team
+      MARIADB_USER: ${MARIADB_USER_TEAM}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD_TEAM}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    ports:
+      - "3307:3306"
+    container_name: db_team
+    volumes:
+      - mariadb_team:/var/lib/mysql
+
+  db_player:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_DATABASE: db_player
+      MARIADB_USER: ${MARIADB_USER_PLAYER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD_PLAYER}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    ports:
+      - "3308:3306"
+    container_name: db_player
+    volumes:
+      - mariadb_player:/var/lib/mysql
   
   api-gateway:
     build: ./api-gateway
@@ -25,17 +53,70 @@ services:
       - "8761:8761"
     container_name: discovery-service
 
+  rabbitmq:
+    image: rabbitmq:4.0-management
+    restart: always
+    ports:
+      - "${RABBITMQ_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT}:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    container_name: rabbitmq
+
   soccer-microservice:
     build: ./soccer
     container_name: soccer-microservice
     environment:
-      - DB_URL=${MARIADB_URL}
-      - DB_USER=${MARIADB_USER}
-      - DB_PASS=${MARIADB_PASSWORD}
+      - MARIADB_URL_SOCCER=${MARIADB_URL_SOCCER}
+      - MARIADB_USER_SOCCER=${MARIADB_USER_SOCCER}
+      - MARIADB_PASSWORD_SOCCER=${MARIADB_PASSWORD_SOCCER}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - EUREKA_URL=${EUREKA_URL}
     depends_on:
       - db_soccer
       - discovery-service
       - api-gateway
 
+  player-microservice:
+    build: ./player
+    container_name: player-microservice
+    environment:
+      - MARIADB_URL_PLAYER=${MARIADB_URL_PLAYER}
+      - MARIADB_USER_PLAYER=${MARIADB_USER_PLAYER}
+      - MARIADB_PASSWORD_PLAYER=${MARIADB_PASSWORD_PLAYER}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - EUREKA_URL=${EUREKA_URL}
+    depends_on:
+      - db_player
+      - discovery-service
+      - api-gateway
+  
+  team-microservice:
+    build: ./team
+    container_name: team-microservice
+    environment:
+      - MARIADB_URL_TEAM=${MARIADB_URL_TEAM}
+      - MARIADB_USER_TEAM=${MARIADB_USER_TEAM}
+      - MARIADB_PASSWORD_TEAM=${MARIADB_PASSWORD_TEAM}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - EUREKA_URL=${EUREKA_URL}
+    depends_on:
+      - db_team
+      - discovery-service
+      - api-gateway
+
 volumes:
-  mariadb_data:
+  mariadb_soccer:
+  mariadb_team:
+  mariadb_player:
+

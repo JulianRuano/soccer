@@ -3,5 +3,5 @@ spring:
     name: team-microservice
 
   profiles:
-    active: ${PROFILES:dev}
+    active: ${PROFILES:devlocal}
 

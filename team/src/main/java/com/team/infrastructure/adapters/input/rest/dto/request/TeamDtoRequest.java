@@ -12,6 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TeamDtoRequest {
     private String name;
-    private String alignment;
     private List<Long> idPlayers;
 }
