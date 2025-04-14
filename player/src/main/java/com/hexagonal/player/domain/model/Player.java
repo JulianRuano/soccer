@@ -25,7 +25,7 @@ public class Player {
     }
 
     public void recoverEnergy() {
-        this.energy += Math.min(100, 10 + this.energy);
+        this.energy = Math.min(100, 10 + this.energy);
     }
 
     public boolean canPlay() {

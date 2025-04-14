@@ -19,4 +19,5 @@ public class PlayerDtoRequest {
     private Position position;
     private int skill;
     private int energy;
+
 }

@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/player")
-public class soccerRestController {
+public class PlayerRestController {
     
     private final IPlayerInputPort playerInputPort;
     private final PlayerRestMapper playerRestMapper;
