@@ -52,12 +52,14 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -102,7 +104,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-mysql</artifactId>
+			<artifactId>flyway-database-postgresql</artifactId>
 			<version>${flyway.version}</version>
 		</dependency>
 	</dependencies>
@@ -110,17 +112,17 @@
 	<build>
 		<plugins>	
 			<!-- Flyway plugin for database migrations -->	
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>${flyway.version}</version>
-                <configuration>
-                    <url>${MARIADB_URL_SOCCER}</url>
-                    <user>${MARIADB_USER_SOCCER}</user>
-                    <password>${MARIADB_PASSWORD_SOCCER}</password>
-                    <locations>classpath:db/migration</locations>
-                </configuration>
-            </plugin>	
+			<plugin>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-maven-plugin</artifactId>
+			<version>${flyway.version}</version>
+			<configuration>
+				<url>${POSTGRES_URL_SOCCER}</url>
+				<user>${POSTGRES_USER_SOCCER}</user>
+				<password>${POSTGRES_PASSWORD_SOCCER}</password>
+				<locations>classpath:db/migration</locations>
+			</configuration>
+			</plugin>
 
 			<!-- Maven Compiler Plugin for configuring compilation and annotation processors -->
 			<plugin>

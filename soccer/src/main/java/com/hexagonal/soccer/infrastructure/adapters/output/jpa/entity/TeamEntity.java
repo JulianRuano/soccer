@@ -35,4 +35,6 @@ public class TeamEntity {
     @OneToMany(mappedBy = "visitorTeam")
     private List<GameEntity> visitorGames;
 
+    @Column(name = "tenant_id", nullable = false)
+    private String tenantId;    
 }

@@ -1,16 +1,16 @@
 spring:
   datasource:
-    url: ${MARIADB_URL_SOCCER}
-    username: ${MARIADB_USER_SOCCER}
-    password: ${MARIADB_PASSWORD_SOCCER}
-    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${POSTGRES_URL_SOCCER}
+    username: ${POSTGRES_USER_SOCCER}
+    password: ${POSTGRES_PASSWORD_SOCCER}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
-      dialect: org.hibernate.dialect.MariaDBDialect
+      dialect: org.hibernate.dialect.PostgreSQLDialect
 
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
