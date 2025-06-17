@@ -26,4 +26,6 @@ public class PlayerEntity {
     @JoinColumn(name = "team_id")
     private TeamEntity team;
 
+    @Column(name = "tenant_id", nullable = false)
+    private String tenantId;  
 }

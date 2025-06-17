@@ -11,6 +11,7 @@ public interface TeamEntityMapper {
     
     @Mapping(target = "localGames", ignore = true)
     @Mapping(target = "visitorGames", ignore = true)
+    @Mapping(target = "tenantId", ignore = true)
     TeamEntity toEntity(Team team);
     
     Team toDomain(TeamEntity teamEntity);

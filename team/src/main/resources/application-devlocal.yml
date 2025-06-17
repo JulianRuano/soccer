@@ -1,16 +1,16 @@
 spring:
   datasource:
-    url: ${MARIADB_URL_TEAM:jdbc:mariadb://localhost:3306/team}
-    username: ${MARIADB_USER_TEAM:root}
-    password: ${MARIADB_PASSWORD_TEAM:root}
-    driver-class-name: org.mariadb.jdbc.Driver
-
+    url: ${POSTGRES_URL_TEAM} 
+    username: ${POSTGRES_USER_TEAM}
+    password: ${POSTGRES_PASSWORD_TEAM}
+    driver-class-name: org.postgresql.Driver
+    
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
-      dialect: org.hibernate.dialect.MariaDBDialect
+      dialect: org.hibernate.dialect.PostgreSQLDialect
 
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}

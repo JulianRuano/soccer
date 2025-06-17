@@ -1,5 +1,7 @@
 package com.hexagonal.soccer.infrastructure.adapters.output.jpa.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -12,5 +14,8 @@ public interface GameEntityMapper {
     Game toDomain(GameEntity gameEntity);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "tenantId", ignore = true)
     GameEntity toEntity(Game game);
+
+    List<Game> toDomainList(List<GameEntity> all);
 }

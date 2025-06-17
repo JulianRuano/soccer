@@ -1,5 +1,6 @@
 package com.hexagonal.soccer.application.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -33,6 +34,12 @@ public class PlayGameService implements IPlayGameInputPort {
         }
 
         return null;   
+    }
+
+    @Override
+    public List<Game> getAllGames() {
+        List<Game> games = gameOutputPort.getAllGames();
+        return games;
     }
 
 }

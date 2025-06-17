@@ -1,5 +1,7 @@
 package com.hexagonal.soccer.infrastructure.adapters.output.jpa.adapter;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hexagonal.soccer.domain.model.Game;
@@ -20,6 +22,11 @@ public class GameJpaAdapter implements IGameRepositoryPort {
     @Override
     public Game createGame(Game game) {
         return gameEntityMapper.toDomain(gameRepository.save(gameEntityMapper.toEntity(game)));      
+    }
+
+    @Override
+    public List<Game> getAllGames() {
+        return gameEntityMapper.toDomainList(gameRepository.findAll());
     }
     
 }

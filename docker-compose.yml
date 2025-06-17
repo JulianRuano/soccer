@@ -1,45 +1,42 @@
 services:
   db_soccer:
-    image: mariadb:latest
+    image: postgres:17
+    container_name: db_soccer
     restart: always
     environment:
-      MARIADB_DATABASE: db_soccer
-      MARIADB_USER: ${MARIADB_URL_SOCCER
-      MARIADB_PASSWORD: ${MARIADB_PASSWORD_SOCCER}
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER_SOCCER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_SOCCER}
+      POSTGRES_DB: ${POSTGRES_DB_SOCCER}
     ports:
-      - "3306:3306"
-    container_name: db_soccer
+      - "5432:5432"
     volumes:
-      - mariadb_soccer:/var/lib/mysql
+      - postgresql_data:/var/lib/postgresql/data
 
   db_team:
-    image: mariadb:latest
+    image: postgres:17
+    container_name: db_team
     restart: always
     environment:
-      MARIADB_DATABASE: db_team
-      MARIADB_USER: ${MARIADB_USER_TEAM}
-      MARIADB_PASSWORD: ${MARIADB_PASSWORD_TEAM}
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER_TEAM}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_TEAM}
+      POSTGRES_DB: ${POSTGRES_DB_TEAM}
     ports:
-      - "3307:3306"
-    container_name: db_team
+      - "5433:5432"
     volumes:
-      - mariadb_team:/var/lib/mysql
+      - postgresql_data_team:/var/lib/postgresql/data
 
   db_player:
-    image: mariadb:latest
+    image: postgres:17
+    container_name: db_player
     restart: always
     environment:
-      MARIADB_DATABASE: db_player
-      MARIADB_USER: ${MARIADB_USER_PLAYER}
-      MARIADB_PASSWORD: ${MARIADB_PASSWORD_PLAYER}
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER_PLAYER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_PLAYER}
+      POSTGRES_DB: ${POSTGRES_DB_PLAYER}
     ports:
-      - "3308:3306"
-    container_name: db_player
+      - "5434:5432"
     volumes:
-      - mariadb_player:/var/lib/mysql
+      - postgresql_data_player:/var/lib/postgresql/data
   
   api-gateway:
     build: ./api-gateway
@@ -68,9 +65,9 @@ services:
     build: ./soccer
     container_name: soccer-microservice
     environment:
-      - MARIADB_URL_SOCCER=${MARIADB_URL_SOCCER}
-      - MARIADB_USER_SOCCER=${MARIADB_USER_SOCCER}
-      - MARIADB_PASSWORD_SOCCER=${MARIADB_PASSWORD_SOCCER}
+      - POSTGRES_URL_SOCCER=${POSTGRES_URL_SOCCER}
+      - POSTGRES_USER_SOCCER=${POSTGRES_USER_SOCCER}
+      - POSTGRES_PASSWORD_SOCCER=${POSTGRES_PASSWORD_SOCCER}
       - RABBITMQ_HOST=${RABBITMQ_HOST}
       - RABBITMQ_PORT=${RABBITMQ_PORT}
       - RABBITMQ_USER=${RABBITMQ_USER}
@@ -85,9 +82,9 @@ services:
     build: ./player
     container_name: player-microservice
     environment:
-      - MARIADB_URL_PLAYER=${MARIADB_URL_PLAYER}
-      - MARIADB_USER_PLAYER=${MARIADB_USER_PLAYER}
-      - MARIADB_PASSWORD_PLAYER=${MARIADB_PASSWORD_PLAYER}
+      - POSTGRES_URL_PLAYER=${POSTGRES_URL_PLAYER}
+      - POSTGRES_USER_PLAYER=${POSTGRES_USER_PLAYER}
+      - POSTGRES_PASSWORD_PLAYER=${POSTGRES_PASSWORD_PLAYER}
       - RABBITMQ_HOST=${RABBITMQ_HOST}
       - RABBITMQ_PORT=${RABBITMQ_PORT}
       - RABBITMQ_USER=${RABBITMQ_USER}
@@ -102,9 +99,9 @@ services:
     build: ./team
     container_name: team-microservice
     environment:
-      - MARIADB_URL_TEAM=${MARIADB_URL_TEAM}
-      - MARIADB_USER_TEAM=${MARIADB_USER_TEAM}
-      - MARIADB_PASSWORD_TEAM=${MARIADB_PASSWORD_TEAM}
+      - POSTGRES_URL_TEAM=${POSTGRES_URL_TEAM}
+      - POSTGRES_USER_TEAM=${POSTGRES_USER_TEAM}
+      - POSTGRES_PASSWORD_TEAM=${POSTGRES_PASSWORD_TEAM}
       - RABBITMQ_HOST=${RABBITMQ_HOST}
       - RABBITMQ_PORT=${RABBITMQ_PORT}
       - RABBITMQ_USER=${RABBITMQ_USER}
@@ -116,7 +113,10 @@ services:
       - api-gateway
 
 volumes:
-  mariadb_soccer:
-  mariadb_team:
-  mariadb_player:
+  postgresql_data:
+    driver: local
+  postgresql_data_team:
+    driver: local
+  postgresql_data_player:
+    driver: local
 

@@ -1,6 +1,9 @@
 package com.hexagonal.soccer.infrastructure.adapters.input.rest.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +35,19 @@ public class soccerRestController {
             .data(GameDtoResponse)
             .message("Game played successfully")
             .status(201)
+            .build()
+            .of();
+    }
+
+    @GetMapping("/games")
+    public ResponseEntity<ResponseDto<List<GameDtoResponse>>> getAllGames() {
+        List<Game> games = playGameInputPort.getAllGames();
+        List<GameDtoResponse> gameDtoResponses = gameRestMapper.toResponseList(games);
+
+        return ResponseDto.<List<GameDtoResponse>>builder()
+            .data(gameDtoResponses)
+            .message("Games retrieved successfully")
+            .status(200)
             .build()
             .of();
     }

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.4</version>
+		<version>3.4.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hexagonal.player</groupId>
@@ -53,8 +53,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -102,7 +102,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-mysql</artifactId>
+			<artifactId>flyway-database-postgresql</artifactId>
 			<version>${flyway.version}</version>
 		</dependency>
 	    <!-- Pruebas -->
@@ -126,9 +126,9 @@
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>${flyway.version}</version>
 				<configuration>
-					<url>${MARIADB_URL_PLAYER}</url>
-					<user>${MARIADB_USER_PLAYER}</user>
-					<password>${MARIADB_PASSWORD_PLAYER}</password>
+					<url>${POSTGRES_URL_PLAYERS}</url>
+					<user>${POSTGRES_USER_PLAYERS}</user>
+					<password>${POSTGRES_PASSWORD_PLAYERS}</password>
 					<locations>classpath:db/migration</locations>
 				</configuration>
 			</plugin>

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.4</version>
+		<version>3.4.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hexagonal.soccer</groupId>
@@ -58,8 +58,8 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
 
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -107,21 +107,46 @@
 			<artifactId>flyway-database-postgresql</artifactId>
 			<version>${flyway.version}</version>
 		</dependency>
+
+		<!-- Spring Security and JWT -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>	
 			<!-- Flyway plugin for database migrations -->	
 			<plugin>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-maven-plugin</artifactId>
-			<version>${flyway.version}</version>
-			<configuration>
-				<url>${POSTGRES_URL_SOCCER}</url>
-				<user>${POSTGRES_USER_SOCCER}</user>
-				<password>${POSTGRES_PASSWORD_SOCCER}</password>
-				<locations>classpath:db/migration</locations>
-			</configuration>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>${flyway.version}</version>
+				<configuration>
+					<url>${POSTGRES_URL_SOCCER}</url>
+					<user>${POSTGRES_USER_SOCCER}</user>
+					<password>${POSTGRES_PASSWORD_SOCCER}</password>
+					<locations>classpath:db/migration</locations>
+				</configuration>
 			</plugin>
 
 			<!-- Maven Compiler Plugin for configuring compilation and annotation processors -->

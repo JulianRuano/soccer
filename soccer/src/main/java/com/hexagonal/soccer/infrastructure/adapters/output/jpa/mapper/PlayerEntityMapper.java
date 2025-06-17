@@ -10,6 +10,7 @@ import com.hexagonal.soccer.infrastructure.adapters.output.jpa.entity.PlayerEnti
 public interface PlayerEntityMapper {
 
     @Mapping(target = "team", ignore = true)
+    @Mapping(target = "tenantId", ignore = true)
     PlayerEntity toEntity(Player player);
     
     Player toDomain(PlayerEntity playerEntity);

@@ -36,4 +36,7 @@ public class GameEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "visitor_team_id")
     private TeamEntity visitorTeam;
+
+    @Column(name = "tenant_id", nullable = false)
+    private String tenantId;  
 }
