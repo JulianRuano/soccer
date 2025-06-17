@@ -2,6 +2,8 @@ package com.hexagonal.soccer.infrastructure.adapters.output.jpa.entity;
 
 import java.util.List;
 
+import org.hibernate.annotations.TenantId;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,6 @@ public class TeamEntity {
     @OneToMany(mappedBy = "visitorTeam")
     private List<GameEntity> visitorGames;
 
-    @Column(name = "tenant_id", nullable = false)
+    @TenantId
     private String tenantId;    
 }

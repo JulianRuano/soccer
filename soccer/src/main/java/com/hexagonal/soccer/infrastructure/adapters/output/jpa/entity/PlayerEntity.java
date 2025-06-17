@@ -1,5 +1,7 @@
 package com.hexagonal.soccer.infrastructure.adapters.output.jpa.entity;
 
+import org.hibernate.annotations.TenantId;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +28,6 @@ public class PlayerEntity {
     @JoinColumn(name = "team_id")
     private TeamEntity team;
 
-    @Column(name = "tenant_id", nullable = false)
+    @TenantId
     private String tenantId;  
 }
